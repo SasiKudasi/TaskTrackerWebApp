@@ -1,0 +1,12 @@
+/Users/a1/Projects/TaskTrackerWebApp/Task.Core/bin/Debug/net7.0/Task.Core.deps.json
+/Users/a1/Projects/TaskTrackerWebApp/Task.Core/bin/Debug/net7.0/Task.Core.dll
+/Users/a1/Projects/TaskTrackerWebApp/Task.Core/bin/Debug/net7.0/Task.Core.pdb
+/Users/a1/Projects/TaskTrackerWebApp/Task.Core/obj/Debug/net7.0/Task.Core.csproj.AssemblyReference.cache
+/Users/a1/Projects/TaskTrackerWebApp/Task.Core/obj/Debug/net7.0/Task.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/a1/Projects/TaskTrackerWebApp/Task.Core/obj/Debug/net7.0/Task.Core.AssemblyInfoInputs.cache
+/Users/a1/Projects/TaskTrackerWebApp/Task.Core/obj/Debug/net7.0/Task.Core.AssemblyInfo.cs
+/Users/a1/Projects/TaskTrackerWebApp/Task.Core/obj/Debug/net7.0/Task.Core.csproj.CoreCompileInputs.cache
+/Users/a1/Projects/TaskTrackerWebApp/Task.Core/obj/Debug/net7.0/Task.Core.dll
+/Users/a1/Projects/TaskTrackerWebApp/Task.Core/obj/Debug/net7.0/refint/Task.Core.dll
+/Users/a1/Projects/TaskTrackerWebApp/Task.Core/obj/Debug/net7.0/Task.Core.pdb
+/Users/a1/Projects/TaskTrackerWebApp/Task.Core/obj/Debug/net7.0/ref/Task.Core.dll

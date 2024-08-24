@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "l2Y5h4zFQEsrXSwWtc6anXUgI6EVsnPtzbp4vShnENc=",
+  "Source": "TaskTrackerWebApp",
+  "BasePath": "_content/TaskTrackerWebApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
