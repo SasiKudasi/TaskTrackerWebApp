@@ -1,4 +1,3 @@
-import './App.css';  
 import CreateTasksForm from './components/CreateTasksForm';
 import TasksLists from './components/Tasks';
 import SelectFilters from './components/Filters';
