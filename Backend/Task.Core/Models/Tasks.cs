@@ -1,5 +1,8 @@
-﻿namespace Task.Core.Models;
-public class Tasks
+﻿using Task.Core.DomainEvents;
+using Task.Core.Shared.Entities;
+
+namespace Task.Core.Models;
+public class Tasks : Entity<Guid>
 {
     private Tasks(Guid id, string title, string description, DateTime date)
     {
@@ -7,9 +10,11 @@ public class Tasks
         Title = title;
         Description = description;
         Date = date;
+        AddDomainEvent(new TaskCreatedEvent(id, title, date));
+
     }
 
-    public Guid Id { get; private set; }
+    public override Guid Id { get; init; }
     public string Title { get; private set; } = string.Empty;
     public string Description { get; private set; } = string.Empty;
     public DateTime Date { get; private set; } = DateTime.Now;
