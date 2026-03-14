@@ -2,6 +2,7 @@
 using Task.Core.Shared.Entities;
 
 namespace Task.Core.Models;
+
 public class Tasks : Entity<Guid>
 {
     private Tasks(Guid id, string title, string description, DateTime date)
@@ -10,8 +11,7 @@ public class Tasks : Entity<Guid>
         Title = title;
         Description = description;
         Date = date;
-        AddDomainEvent(new TaskCreatedEvent(id, title, date));
-
+        AddDomainEvent(new TaskCreatedEvent(id, title, description, date));
     }
 
     public override Guid Id { get; init; }
@@ -24,6 +24,17 @@ public class Tasks : Entity<Guid>
     {
         var task = new Tasks(id, title, description, date);
         return task;
+    }
+
+    public void ChangeTitle(string newTitle)
+    {
+        Title = newTitle;
+        AddDomainEvent(new TaskNameChangedEvent(Id, newTitle, DateTime.Now));
+    }
+    public void ChangeDescription(string newDescription)
+    {
+        Description = newDescription;
+        AddDomainEvent(new TaskDescriptionChangedEvent(Id, newDescription, DateTime.Now));
     }
 }
 

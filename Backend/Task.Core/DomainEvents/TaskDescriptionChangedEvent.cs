@@ -3,17 +3,14 @@ using Task.Core.Shared.Entities;
 
 namespace Task.Core.DomainEvents;
 
-public class TaskCreatedEvent : Event
+public class TaskDescriptionChangedEvent : Event
 {
     public Guid TaskId { get; init; }
-    public string TaskName { get; init; }
-
     public string Description { get; init; }
 
-    public TaskCreatedEvent(Guid taskId, string taskName, string description, DateTime creationDate) : base (creationDate)
+    public TaskDescriptionChangedEvent(Guid taskId, string description, DateTime creationDate) : base (creationDate)
     {
         TaskId = taskId;
-        TaskName = taskName;
         Description = description;
     }
 }
