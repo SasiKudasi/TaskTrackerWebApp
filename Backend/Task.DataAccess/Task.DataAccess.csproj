@@ -12,7 +12,6 @@
     <None Remove="Repository\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\" />
     <Folder Include="Configure\" />
     <Folder Include="Repository\" />
   </ItemGroup>

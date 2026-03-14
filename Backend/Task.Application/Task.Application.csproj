@@ -10,9 +10,8 @@
     <None Remove="Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Task.Core\Task.Core.csproj" />
+    <ProjectReference Include="..\Task.DataAccess\Task.DataAccess.csproj" />
+    <ProjectReference Include="..\Task.EventBus\Task.EventBus.csproj" />
   </ItemGroup>
 </Project>

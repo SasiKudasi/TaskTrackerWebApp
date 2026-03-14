@@ -7,13 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Models\" />
-    <None Remove="Abstraction\" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.5" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Task.Core.Shared\Task.Core.Shared.csproj" />
   </ItemGroup>
+
 </Project>

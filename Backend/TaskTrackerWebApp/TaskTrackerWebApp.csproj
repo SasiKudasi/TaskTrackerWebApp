@@ -25,6 +25,7 @@
     <ProjectReference Include="..\Task.Application\Task.Application.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\Task.EventBus\Task.EventBus.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Contracts\" />

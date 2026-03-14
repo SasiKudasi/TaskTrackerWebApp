@@ -2,7 +2,9 @@
 using Task.Core.Abstraction;
 using Task.DataAccess;
 using Task.DataAccess.Repository;
-using Task.Application.Services;
+using Task.Application;
+using Task.EventBus.Abstractions;
+using Task.EventBus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +17,9 @@ builder.Services.AddDbContext<TaskDbContext>(
     });
 
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ITaskUnitOfWork, TaskUnitOfWork>();
+builder.Services.AddScoped<IEventDispatcher, EventDispatcher>();
 
-builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>

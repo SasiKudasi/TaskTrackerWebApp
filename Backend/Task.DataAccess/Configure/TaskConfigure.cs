@@ -1,17 +1,17 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Task.DataAccess.Entities;
+using Task.Core.Models;
+using Task.Core.Shared.Entities;
 
 namespace Task.DataAccess.Configure
 {
-	public class TaskConfigure : IEntityTypeConfiguration<TaskEntity>
+    public class TaskConfigure : IEntityTypeConfiguration<Tasks>
     {
-		public TaskConfigure() 
-		{
-		}
+        public TaskConfigure()
+        {
+        }
 
-        public void Configure(EntityTypeBuilder<TaskEntity> builder)
+        public void Configure(EntityTypeBuilder<Tasks> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Title)
@@ -20,6 +20,9 @@ namespace Task.DataAccess.Configure
                 .IsRequired();
             builder.Property(x => x.Date)
                 .IsRequired();
+
+            builder.Ignore(x => x.DomainEvents);
+
         }
     }
 }
