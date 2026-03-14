@@ -1,26 +1,24 @@
-﻿using System;
-namespace Task.Core.Models
+﻿namespace Task.Core.Models;
+public class Tasks
 {
-	public class Tasks
-	{
-		private Tasks(Guid id, string title, string description, DateTime date)
-		{
-			Id = id;
-			Title = title;
-			Description = description;
-			Date = date;
-		}
+    private Tasks(Guid id, string title, string description, DateTime date)
+    {
+        Id = id;
+        Title = title;
+        Description = description;
+        Date = date;
+    }
 
-		public Guid Id { get; }
-		public string Title { get; } = string.Empty;
-		public string Description { get; } = string.Empty;
-		public DateTime Date { get; } = DateTime.Now;
+    public Guid Id { get; private set; }
+    public string Title { get; private set; } = string.Empty;
+    public string Description { get; private set; } = string.Empty;
+    public DateTime Date { get; private set; } = DateTime.Now;
 
-		public static Tasks Create (Guid id, string title, string description, DateTime date)
-		{
-			var task = new Tasks(id, title, description, date);
-			return task;
-		}
-	}
+
+    public static Tasks Create(Guid id, string title, string description, DateTime date)
+    {
+        var task = new Tasks(id, title, description, date);
+        return task;
+    }
 }
 
