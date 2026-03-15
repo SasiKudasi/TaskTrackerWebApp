@@ -18,19 +18,17 @@ public class TaskRepository : ITaskRepository
 
         if (specs.Sorting.Equals("desc"))
         {
-            query.OrderByDescending(x => x.Title);
+          query =  query.OrderByDescending(x => x.Title);
         }
         if (specs.Sorting.Equals("asc"))
         {
-            query.OrderBy(x => x.Description);
+            query = query.OrderBy(x => x.Title);
         }
 
         return await query
             .Skip((specs.PageNum - 1) * specs.PageSize)
             .Take(specs.PageSize)
             .ToListAsync();
-
-        //return await query.ToListAsync();
     }
 
     public async Task<Tasks?> GetByIdAsync(Guid id)
