@@ -22,7 +22,7 @@ namespace TaskTrackerWebApp.Controllers
     {
 
         [HttpGet]
-        public async Task<ActionResult<List<TasksResponce>>> GetTasks([FromBody] Specification specs, CancellationToken token)
+        public async Task<ActionResult<List<TasksResponce>>> GetTasks([FromQuery] Specification specs, CancellationToken token)
         {
             var result = await getTasksQuery.HandleAsync(new GetTasksQuery(specs.PageSize, specs.PageNum, specs.Sorting), token);
             if (result.IsFailure)

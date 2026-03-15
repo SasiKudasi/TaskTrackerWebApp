@@ -14,5 +14,6 @@
     <ProjectReference Include="..\Task.Core\Task.Core.csproj" />
     <ProjectReference Include="..\Task.DataAccess\Task.DataAccess.csproj" />
     <ProjectReference Include="..\Task.EventBus\Task.EventBus.csproj" />
+    <ProjectReference Include="..\Task.Shared\Task.Shared.csproj" />
   </ItemGroup>
 </Project>

@@ -14,8 +14,7 @@ public class TaskRepository : ITaskRepository
 
     public async Task<List<Tasks>> GetList(Specification specs)
     {
-        var query = _dbContext.Tasks.AsNoTracking()
-            .Skip(specs.PageNum - 1).Take(specs.PageSize);
+        var query = _dbContext.Tasks.AsNoTracking().AsQueryable();
 
         if (specs.Sorting.Equals("desc"))
         {
@@ -26,12 +25,17 @@ public class TaskRepository : ITaskRepository
             query.OrderBy(x => x.Description);
         }
 
-       return await query.ToListAsync();
+        return await query
+            .Skip((specs.PageNum - 1) * specs.PageSize)
+            .Take(specs.PageSize)
+            .ToListAsync();
+
+        //return await query.ToListAsync();
     }
 
     public async Task<Tasks?> GetByIdAsync(Guid id)
     {
-       return await _dbContext.Tasks.Where(x => x.Id == id).FirstOrDefaultAsync();
+        return await _dbContext.Tasks.Where(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public async System.Threading.Tasks.Task Create(Tasks task)
