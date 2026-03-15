@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Security.Cryptography;
 using Task.Application.Commands.CreateTask;
 using Task.Application.Commands.DeleteTask;
 using Task.Application.Commands.UpdateTask;
 using Task.Application.Queries.GetTask;
 using Task.Application.Queries.GetTasks;
 using Task.Application.Shared;
-using Task.Core.Abstraction;
 using Task.Core.Models;
 using TaskTrackerWebApp.Contracts;
 

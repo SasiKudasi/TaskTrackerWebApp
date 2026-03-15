@@ -29,7 +29,7 @@ public class Tasks : Entity<Guid>
     public void ChangeTitle(string newTitle)
     {
         Title = newTitle;
-        AddDomainEvent(new TaskNameChangedEvent(Id, newTitle, DateTime.Now));
+        AddDomainEvent(new TaskTitleChangedEvent(Id, newTitle, DateTime.Now));
     }
     public void ChangeDescription(string newDescription)
     {
