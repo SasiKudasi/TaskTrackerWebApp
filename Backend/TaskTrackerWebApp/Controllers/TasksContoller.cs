@@ -2,6 +2,9 @@
 using System;
 using System.Security.Cryptography;
 using Task.Application.Commands.CreateTask;
+using Task.Application.Commands.DeleteTask;
+using Task.Application.Commands.UpdateTask;
+using Task.Application.Queries.GetTask;
 using Task.Application.Queries.GetTasks;
 using Task.Application.Shared;
 using Task.Core.Abstraction;
@@ -14,7 +17,10 @@ namespace TaskTrackerWebApp.Controllers
     [Route("tasks")]
     public class TasksContoller(
         ICommandHandler<CreateTaskCommand> createTask,
-        IQueryHandler<GetTasksQuery, List<Tasks>> getTasksQuery) : ControllerBase
+        ICommandHandler<DeleteTaskCommand> deleteTask,
+        ICommandHandler<UpdateTaskCommand> updateTask,
+        IQueryHandler<GetTasksQuery, List<Tasks>> getTasksQuery,
+        IQueryHandler<GetTaskQuery, Tasks> getTaskQuery) : ControllerBase
     {
 
         [HttpGet]
@@ -26,19 +32,47 @@ namespace TaskTrackerWebApp.Controllers
                 return BadRequest(result.Error);
             }
             var tasks = result.Value;
-            var response = tasks.Select(x => new TasksResponce(x.Title, x.Description, x.Date));
+            var response = tasks.Select(x => new TasksResponce(x.Id, x.Title, x.Description, x.Date));
             return Ok(response);
         }
-        //[HttpGet ("sort")]
-        //      public async Task<ActionResult<List<TasksResponce>>> GetSortedTasks(string sort)
-        //{
-        //          var tasks = await _service.GetAllTasks();
-        //          var responce = tasks.Select(t => new TasksResponce(t.Id, t.Title, t.Description, t.Date)).OrderBy(t => t.Date);
-        //	if (sort == "desc")
-        //		responce = responce.OrderByDescending(x => x.Date); 
-        //          return Ok(responce);
-        //      }
 
+        [HttpGet("{taskId:guid}")]
+        public async Task<ActionResult<TasksResponce>> GetTaskById(Guid taskId, CancellationToken token)
+        {
+            var result = await getTaskQuery.HandleAsync(new GetTaskQuery(taskId), token);
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+
+            var tasks = result.Value;
+            var response = new TasksResponce(tasks.Id, tasks.Title, tasks.Description, tasks.Date);
+            return Ok(response);
+        }
+
+        [HttpDelete("{taskId:guid}")]
+        public async Task<ActionResult> DeleteTask(Guid taskId, CancellationToken token)
+        {
+            var cmd = new DeleteTaskCommand(taskId);
+            var res = await deleteTask.HandleAsync(cmd, token);
+            if (res.IsFailure)
+            {
+                return BadRequest(res.Error);
+            }
+            return Ok();
+        }
+
+        [HttpPatch("{taskId:guid}")]
+        public async Task<ActionResult> UpdateTask([FromBody] UpdateTaskRequest request, Guid taskId, CancellationToken token)
+        {
+            var cmd = new UpdateTaskCommand(taskId, request.Title, request.Description);
+            var res = await updateTask.HandleAsync(cmd, token);
+            if (res.IsFailure)
+            {
+                return BadRequest(res.Error);
+            }
+            return Ok();
+        }
 
         [HttpPost]
         public async Task<ActionResult<Guid>> CreateTask([FromBody] TaskRequest taskRequest, CancellationToken token)
