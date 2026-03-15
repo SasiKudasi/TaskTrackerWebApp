@@ -1,7 +1,7 @@
 ﻿using System;
 namespace TaskTrackerWebApp.Contracts
 {
-	public record TasksResponce (Guid Id,
+	public record TasksResponce (
 		string Title,
 		string Description,
 		DateTime Date);

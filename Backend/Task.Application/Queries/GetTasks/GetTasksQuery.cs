@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Task.Application.Shared;
 
-namespace Task.Application.Queries.GetTasks
+namespace Task.Application.Queries.GetTasks;
+
+public class GetTasksQuery : IQuery
 {
-    internal class GetTasksQuery
-    {
-    }
 }

@@ -13,7 +13,7 @@ public class TaskRepository : ITaskRepository
 
     public async Task<List<Tasks>> Get()
     {
-        return await _dbContext.Tasks.ToListAsync();
+        return await _dbContext.Tasks.AsNoTracking().ToListAsync();
     }
 
     public async System.Threading.Tasks.Task GetByIdAsync(Guid id)
