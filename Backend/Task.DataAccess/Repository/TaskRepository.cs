@@ -11,14 +11,14 @@ public class TaskRepository : ITaskRepository
         _dbContext = dbContext;
     }
 
-    public async Task<List<Tasks>> Get()
+    public async Task<List<Tasks>> GetList()
     {
         return await _dbContext.Tasks.AsNoTracking().ToListAsync();
     }
 
-    public async System.Threading.Tasks.Task GetByIdAsync(Guid id)
+    public async Task<Tasks?> GetByIdAsync(Guid id)
     {
-        await _dbContext.Tasks.Where(x => x.Id == id).FirstOrDefaultAsync();
+       return await _dbContext.Tasks.Where(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public async System.Threading.Tasks.Task Create(Tasks task)

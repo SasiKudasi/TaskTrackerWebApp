@@ -10,7 +10,7 @@ namespace Task.Application.Queries.GetTasks
     {
         public async Task<Result<List<Tasks>>> HandleAsync(GetTasksQuery query, CancellationToken token)
         {
-            var tasks = await repository.Get();
+            var tasks = await repository.GetList();
             if (tasks == null)
             {
                 return Result.Failure<List<Tasks>>("No tasks found.");

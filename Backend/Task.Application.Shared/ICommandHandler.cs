@@ -1,7 +1,9 @@
-﻿namespace Task.Application.Shared;
+﻿using CSharpFunctionalExtensions;
+
+namespace Task.Application.Shared;
 
 public interface ICommandHandler<TCommand> 
     where TCommand : ICommand
 {
-    System.Threading.Tasks.Task HandleAsync(TCommand command, CancellationToken token);
+   public Task<Result<(bool isSucces, string msg)>> HandleAsync(TCommand command, CancellationToken token);
 }

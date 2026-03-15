@@ -44,7 +44,11 @@ namespace TaskTrackerWebApp.Controllers
         public async Task<ActionResult<Guid>> CreateTask([FromBody] TaskRequest taskRequest, CancellationToken token)
         {
             var cmd = new CreateTaskCommand(Guid.NewGuid(), taskRequest.Title, taskRequest.Description);
-            await createTask.HandleAsync(cmd, token);
+            var res = await createTask.HandleAsync(cmd, token);
+            if (res.IsFailure)
+            {
+                return BadRequest(res.Error);
+            }
             return Ok(cmd.TaskID);
         }
     }
