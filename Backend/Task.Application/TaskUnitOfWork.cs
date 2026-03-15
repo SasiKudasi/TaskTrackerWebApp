@@ -10,21 +10,21 @@ public class TaskUnitOfWork (TaskDbContext context, IEventDispatcher dispatcher)
 {
     public async System.Threading.Tasks.Task CommitAsync(CancellationToken ct)
     {
-        var result = await context.SaveChangesAsync(ct);
-
         var entities = context.ChangeTracker
            .Entries<Entity>()
            .Select(x => x.Entity)
            .Where(x => x.DomainEvents.Any())
            .ToList();
-
+        
         var events = entities
            .SelectMany(x => x.DomainEvents)
            .ToList();
-
+        
         await dispatcher.Dispatch(events);
-
+        
         entities.ForEach(e => e.ClearDomainEvents());
+        
+        await context.SaveChangesAsync(ct);
 
     }
 }

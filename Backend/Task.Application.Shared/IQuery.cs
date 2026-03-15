@@ -1,0 +1,6 @@
+﻿namespace Task.Application.Shared
+{
+    public interface IQuery
+    {
+    }
+}

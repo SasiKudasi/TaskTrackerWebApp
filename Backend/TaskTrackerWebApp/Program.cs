@@ -20,6 +20,8 @@ builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<ITaskUnitOfWork, TaskUnitOfWork>();
 builder.Services.AddScoped<IEventDispatcher, EventDispatcher>();
 
+builder.Services.AddAppServices();
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>

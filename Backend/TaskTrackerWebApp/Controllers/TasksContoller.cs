@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Security.Cryptography;
-using Microsoft.AspNetCore.Mvc;
+using Task.Application.Commands.CreateTask;
+using Task.Application.Shared;
 using Task.Core.Abstraction;
 using Task.Core.Models;
 using TaskTrackerWebApp.Contracts;
@@ -9,7 +11,7 @@ namespace TaskTrackerWebApp.Controllers
 {
 	[ApiController]
 	[Route("tasks")]
-	public class TasksContoller : ControllerBase
+	public class TasksContoller(ICommandHandler<CreateTaskCommand> createTask) : ControllerBase
 	{
 		//private readonly ITaskService _service;
 		//public TasksContoller(ITaskService service)
@@ -34,17 +36,13 @@ namespace TaskTrackerWebApp.Controllers
 		//      }
 
 
-		//      [HttpPost]
-		//public async Task<ActionResult<Guid>> CreateTask([FromBody] TaskRequest taskRequest)
-		//      {
-		//	var entity = Tasks.Create(Guid.NewGuid(),
-		//		taskRequest.Title,
-		//		taskRequest.Description,
-		//		taskRequest.Date);
-
-		//	var tasks = await _service.CreateNewTask(entity);
-		//	return Ok(tasks);
-		//}
+		[HttpPost]
+		public async Task<ActionResult<Guid>> CreateTask([FromBody] TaskRequest taskRequest, CancellationToken token)
+		{
+			var cmd = new CreateTaskCommand(Guid.NewGuid(), taskRequest.Title, taskRequest.Description);
+			await createTask.HandleAsync(cmd, token);
+            return Ok(cmd.TaskID);
+		}
 	}
 }
 

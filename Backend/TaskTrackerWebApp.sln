@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{156B7F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.EventBus", "Task.EventBus\Task.EventBus.csproj", "{D9FA3D89-679D-441E-8AE6-974011CC2577}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.Application.Shared", "Task.Application.Shared\Task.Application.Shared.csproj", "{9DACBBDA-AC2D-4F84-B88A-5DA595E7DEB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{D9FA3D89-679D-441E-8AE6-974011CC2577}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9FA3D89-679D-441E-8AE6-974011CC2577}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9FA3D89-679D-441E-8AE6-974011CC2577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DACBBDA-AC2D-4F84-B88A-5DA595E7DEB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DACBBDA-AC2D-4F84-B88A-5DA595E7DEB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DACBBDA-AC2D-4F84-B88A-5DA595E7DEB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DACBBDA-AC2D-4F84-B88A-5DA595E7DEB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8214890C-3A6F-4242-9016-79D6A32DBDF5} = {156B7FC1-8492-43CD-8474-4BF794BF374A}
 		{D9FA3D89-679D-441E-8AE6-974011CC2577} = {156B7FC1-8492-43CD-8474-4BF794BF374A}
+		{9DACBBDA-AC2D-4F84-B88A-5DA595E7DEB4} = {156B7FC1-8492-43CD-8474-4BF794BF374A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF3EE3D3-5191-4310-B710-8A17E42F135A}
