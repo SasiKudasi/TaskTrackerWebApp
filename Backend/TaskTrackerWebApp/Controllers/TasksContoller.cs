@@ -35,7 +35,7 @@ namespace TaskTrackerWebApp.Controllers
         //          var tasks = await _service.GetAllTasks();
         //          var responce = tasks.Select(t => new TasksResponce(t.Id, t.Title, t.Description, t.Date)).OrderBy(t => t.Date);
         //	if (sort == "desc")
-        //		responce = responce.OrderByDescending(x => x.Date);
+        //		responce = responce.OrderByDescending(x => x.Date); 
         //          return Ok(responce);
         //      }
 
