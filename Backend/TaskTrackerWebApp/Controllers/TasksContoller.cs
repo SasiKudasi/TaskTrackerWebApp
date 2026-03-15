@@ -6,6 +6,7 @@ using Task.Application.Queries.GetTask;
 using Task.Application.Queries.GetTasks;
 using Task.Application.Shared;
 using Task.Core.Models;
+using Task.Shared.Contracts;
 using TaskTrackerWebApp.Contracts;
 
 namespace TaskTrackerWebApp.Controllers
@@ -21,9 +22,9 @@ namespace TaskTrackerWebApp.Controllers
     {
 
         [HttpGet]
-        public async Task<ActionResult<List<TasksResponce>>> GetTasks(CancellationToken token)
+        public async Task<ActionResult<List<TasksResponce>>> GetTasks([FromBody] Specification specs, CancellationToken token)
         {
-            var result = await getTasksQuery.HandleAsync(new GetTasksQuery(), token);
+            var result = await getTasksQuery.HandleAsync(new GetTasksQuery(specs.PageSize, specs.PageNum, specs.Sorting), token);
             if (result.IsFailure)
             {
                 return BadRequest(result.Error);

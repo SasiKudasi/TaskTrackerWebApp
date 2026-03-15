@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Task.Core.Abstraction;
 using Task.Core.Models;
+using Task.Shared.Contracts;
 namespace Task.DataAccess.Repository;
 
 public class TaskRepository : ITaskRepository
@@ -11,9 +12,21 @@ public class TaskRepository : ITaskRepository
         _dbContext = dbContext;
     }
 
-    public async Task<List<Tasks>> GetList()
+    public async Task<List<Tasks>> GetList(Specification specs)
     {
-        return await _dbContext.Tasks.AsNoTracking().ToListAsync();
+        var query = _dbContext.Tasks.AsNoTracking()
+            .Skip(specs.PageNum - 1).Take(specs.PageSize);
+
+        if (specs.Sorting.Equals("desc"))
+        {
+            query.OrderByDescending(x => x.Title);
+        }
+        if (specs.Sorting.Equals("asc"))
+        {
+            query.OrderBy(x => x.Description);
+        }
+
+       return await query.ToListAsync();
     }
 
     public async Task<Tasks?> GetByIdAsync(Guid id)

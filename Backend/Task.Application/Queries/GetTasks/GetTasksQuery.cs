@@ -2,6 +2,4 @@
 
 namespace Task.Application.Queries.GetTasks;
 
-public class GetTasksQuery : IQuery
-{
-}
+public record GetTasksQuery(int PageSize, int PageNum, string Sorting) : IQuery;
