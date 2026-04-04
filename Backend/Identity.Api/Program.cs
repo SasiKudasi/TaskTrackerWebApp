@@ -55,10 +55,13 @@ builder.Services.AddAuthorization(options =>
     {
         policy.RequireClaim(ClaimTypes.Role, UserRole.Admin.ToString());
     });
+    options.AddPolicy("User", policy =>
+    {
+        policy.RequireClaim(ClaimTypes.Role, UserRole.User.ToString());
+    });
 });
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
