@@ -15,7 +15,7 @@ namespace Identity.Api.Controllers
         IQueryHandler<GetUsersQuery, List<User>> getUsersQuery) : ControllerBase
     {
         [HttpGet]
-        [Authorize]
+        [Authorize ("Admin")]
         public async Task<ActionResult<List<User>>> GetUsers(CancellationToken token)
         {
             var result = await getUsersQuery.HandleAsync(new GetUsersQuery(), token);
